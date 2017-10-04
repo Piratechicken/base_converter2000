@@ -1,0 +1,23 @@
+<h1>Number Converteramatron 2000</h1>
+
+<% if @number.present? %>
+  <p>The number <%= @number %><sub>10</sub> is the same as the number <%= number_to_base(@number, @base_to) %><sub><%= @base_to %></sub>
+<% end %>
+
+<%= form_with(local: true) do |f| %>
+
+  <div>
+    <%= f.label :number, 'Enter your number: ' %>
+    <%= f.text_field :number, value: @number %>
+  </div>
+  <div>
+    <%= f.label :base_from, 'Converting from base: 10' %>
+    <% f.text_field :base_from, value: @base_from %>
+  </div>  
+  <div>
+    <%= f.label :base_to, 'Enter the base you want to convert to: ' %>
+    <%= f.text_field :base_to, value: @base_to %>
+  </div>
+  <%= f.button 'Convert!' %>
+
+<% end %>

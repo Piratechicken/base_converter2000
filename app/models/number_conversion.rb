@@ -1,0 +1,2 @@
+class NumberConversion < ApplicationRecord
+end
