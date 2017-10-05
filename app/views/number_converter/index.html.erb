@@ -1,23 +1,45 @@
 <h1>Number Converteramatron 2000</h1>
 
-<% if @number.present? %>
-  <p>The number <%= @number %><sub>10</sub> is the same as the number <%= number_to_base(@number, @base_to) %><sub><%= @base_to %></sub>
-<% end %>
+<h3>
+  <%= pluralize(@past_conversions.count, 'conversion') %> have been made so far
+</h3>
 
 <%= form_with(local: true) do |f| %>
 
   <div>
     <%= f.label :number, 'Enter your number: ' %>
-    <%= f.text_field :number, value: @number %>
+    <%= f.text_field :number, value: @number_conversion.number %>
   </div>
   <div>
     <%= f.label :base_from, 'Converting from base: 10' %>
-    <% f.text_field :base_from, value: @base_from %>
+    <%# f.text_field :base_from, value: @base_from %>
   </div>  
   <div>
-    <%= f.label :base_to, 'Enter the base you want to convert to: ' %>
-    <%= f.text_field :base_to, value: @base_to %>
+    <%= f.label :base, 'Enter the base you want to convert to: ' %>
+    <%= f.text_field :base, value: @number_conversion.base %>
   </div>
-  <%= f.button 'Convert!' %>
+  <%= f.button 'Convert' %>
 
 <% end %>
+
+<% if @number_conversion.errors.any? %>
+  <div class="results error-result">
+    <% @number_conversion.errors.full_messages.each do |message| %>
+      <%= message %>
+      <br>
+    <% end %>
+  </div>
+<% elsif @number_conversion.valid? %>
+  <div class="results">
+    The number <%= @number_conversion.number %><sub>10</sub> is the same as the number <%= @number_conversion.result %><sub><%= @number_conversion.base %></sub>
+  </div>
+<% end %>
+
+<div class="history">
+  <h2>History</h2>
+  <ul>
+    <% @past_conversions.each do |conv| %>
+      <p><%= conv.number %><sub>10</sub> = <%= conv.result %><sub><%= conv.base %></sub></p>
+    <% end %>
+  </ul>
+</div>
