@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004054920) do
+ActiveRecord::Schema.define(version: 20171004233400) do
 
   create_table "number_conversions", force: :cascade do |t|
-    t.string "input_number"
-    t.string "base"
-    t.string "output"
+    t.integer "number"
+    t.integer "base"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

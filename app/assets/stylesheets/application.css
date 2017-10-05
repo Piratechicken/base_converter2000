@@ -16,7 +16,7 @@
 
 h1 {
   font-family: sans-serif;
-  color: #2E478B;
+  color: dodgerblue;
   text-align: center;
 }
 
@@ -83,7 +83,7 @@ button {
      between the labels and their text fields */
   margin-left: 400px;
   margin-top: 40px;
-  background: #5FB95F;
+  background: coral;
   color: white;
   border-radius:10px;
 }
